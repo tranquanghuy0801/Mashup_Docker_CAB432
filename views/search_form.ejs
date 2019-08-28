@@ -1,0 +1,24 @@
+<h2 class="page-header">Search News</h2>
+<form action="/search" method="GET">
+    <div class="form-item">
+        <%if (topHeadlines.status == 'ok' ) { %>
+        <tbody class="headlines">
+            <% let a = 0; %>
+            <% for(i=0; i < topHeadlines.articles.length; i++) { %>
+            <tr id=<%= a %>>
+                <%if (topHeadlines.articles[i]  !== null && topHeadlines.articles[i] !== "" && topHeadlines.articles[i] !== undefined) { %>
+                    <br>
+                    <td><%= topHeadlines.articles[i].title  %></td>
+                    <%- include('partials/content_score', { contents: topHeadlines.articles[i].content}) %>
+                    <button type="submit">Views Similar News</button>
+                <% } %>
+
+            </tr>
+            <% a++ %>
+            <% } %>
+        </tbody>
+        <% } %>
+    
+
+    </div>
+</form>
