@@ -11,7 +11,7 @@ const newsapi = new NewsAPI('41dcf83144f54d559886b79caff9273e');
 
 // To query top headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
-router.get('/',(req, res) => {
+router.get('/:id',(req, res) => {
 	newsapi.v2.topHeadlines({
 		country: req.params.id,
 		language: 'en'
@@ -23,22 +23,9 @@ router.get('/',(req, res) => {
 			const results = await Promise.all(articles);
 			
 			topHeadlines = {
-					"articles": results.slice(1,10),
+					"articles": results.slice(1,20),
+					"country": req.params.id,
 					"status": "ok"
-				/*
-				"messages": [
-					{
-						"attachment": {
-							"type": "template",
-							"payload": {
-								"template_type": "generic",
-								"image_aspect_ratio": "square",
-								"elements": results.slice(0, 10)
-							}
-						}
-					}
-				]
-				*/
 			};
 			
 			res.render('search_form',{topHeadlines : topHeadlines});
@@ -47,7 +34,7 @@ router.get('/',(req, res) => {
 		}
 		
 		else {
-			res.render('search_form',{topHeadlines : ''})
+			res.render('search_form',{topHeadlines : ""})
 		}
 	}).catch(err => console.log(err));
 });
@@ -67,8 +54,11 @@ function  parseArticles(response){
 			if(Object.entries(content).length !== 0){
 				return {
 					"title": article.title,
+					"url": article.url,
+					"published": article.publishedAt,
 					"image_url": article.urlToImage,
-					"subtitle": article.description,
+					"description": article.description,
+					"author": article.author,
 					"content": content,
 					"url": article.url
 				}

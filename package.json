@@ -1,27 +1,27 @@
 {
-  "name": "news-api-analysis",
-  "version": "1.0.0",
-  "description": "An API that exposes news in the form of a response that is accepted by Chatfuel and is rendered as a Gallery on Facebook Messenger",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "devStart": "nodemon server.js"
-  },
-  "keywords": [
-    "news",
-    "api",
-    "google-cloud"
-  ],
-  "author": "Harry Tran",
-  "license": "ISC",
-  "dependencies": {
-    "@google-cloud/language": "^3.2.6",
-    "body-parser": "^1.19.0",
-    "compute-l2norm": "^1.1.0",
-    "ejs": "^2.6.2",
-    "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.0",
-    "newsapi": "^2.4.0",
-    "nodemon": "^1.19.1"
-  }
+	"name": "news-api-analysis",
+	"version": "1.0.0",
+	"description": "An application that analyses the top headlines from News API",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"devStart": "nodemon server.js"
+	},
+	"keywords": [
+		"news",
+		"api",
+		"google-cloud"
+	],
+	"author": "Harry Tran",
+	"license": "ISC",
+	"dependencies": {
+		"@google-cloud/language": "^3.2.6",
+		"body-parser": "^1.19.0",
+		"compute-l2norm": "^1.1.0",
+		"ejs": "^2.6.2",
+		"express": "^4.17.1",
+		"express-ejs-layouts": "^2.5.0",
+		"newsapi": "^2.4.0",
+		"nodemon": "^1.19.1"
+	}
 }

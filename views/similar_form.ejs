@@ -1,0 +1,37 @@
+<% let name_country %>
+<% if(country=="us") { %>
+	<% name_country = "USA" %>
+<% } else if(country=="au") { %>
+	<% name_country = "Australia" %>
+<% } else if(country=="ca") { %>
+	<% name_country = "Canada" %>
+<% } else { %>
+	<% name_country = "UK" %>
+<% } %>
+<% let name_category = category.charAt(0).toUpperCase() + category.slice(1) %>
+<%if (topHeadlines.status == 'ok' ) { %>
+<h3>The <%= name_category %> News in <%= name_country %></h3>
+<div class="row">
+	<% for(i=0; i < topHeadlines.articles.length; i++) { %>
+	<div class="news-item">
+		<div class="news_box">
+			<%if (topHeadlines.articles[i]  !== null && topHeadlines.articles[i] !== "" && topHeadlines.articles[i] !== undefined) { %>
+
+			<div class="newsimg"><img class="img-responsive" src="<%=topHeadlines.articles[i].urlToImage%>" alt="">
+			</div>
+			<div class="news-content">
+				<div class="news_postdate">
+					<% let date = new Date(topHeadlines.articles[i].publishedAt) %>
+					<span><%= date.getUTCMonth() + "/" + date.getUTCDate() + "/" + date.getUTCFullYear() %></span>
+				</div>
+				<a href="<%=topHeadlines.articles[i].url%>">
+					<h3><%= topHeadlines.articles[i].title  %></h3>
+				</a>
+				<p><%= topHeadlines.articles[i].description %></p>
+			</div>	
+			<% } %>
+		</div>
+	</div>
+	<% } %>
+</div>
+<% } %>

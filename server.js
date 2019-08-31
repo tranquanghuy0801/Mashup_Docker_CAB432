@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const searchRouter = require('./routes/search_news');
 const indexRouter = require('./routes/index');
-const similarityRouter = require('./routes/similarity_news');
+const similarRouter = require('./routes/similar_news');
+const aboutRouter = require('./routes/about');
 
 app.set('view engine','ejs');
 app.set('views',__dirname + '/views');
@@ -18,10 +19,12 @@ app.use(bodyParser.json());
 
 app.use('/search',searchRouter);
 app.use('/',indexRouter);
-app.use('/similarity',similarityRouter);
+app.use('/similar',similarRouter);
+app.use('/about',aboutRouter);
 
 // Run the server 
 app.listen((process.env.PORT || 8000), function () {
 	console.log("Server is up and running...");
 });
+
 

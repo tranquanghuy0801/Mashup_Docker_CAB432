@@ -1,24 +1,33 @@
-<h2 class="page-header">Search News</h2>
+<h2 class="page-header">News Searched</h2>
 <form action="/search" method="GET">
     <div class="form-item">
         <%if (topHeadlines.status == 'ok' ) { %>
-        <tbody class="headlines">
-            <% let a = 0; %>
+        <div class="row">
             <% for(i=0; i < topHeadlines.articles.length; i++) { %>
-            <tr id=<%= a %>>
-                <%if (topHeadlines.articles[i]  !== null && topHeadlines.articles[i] !== "" && topHeadlines.articles[i] !== undefined) { %>
-                    <br>
-                    <td><%= topHeadlines.articles[i].title  %></td>
-                    <%- include('partials/content_score', { contents: topHeadlines.articles[i].content}) %>
-                    <button type="submit">Views Similar News</button>
-                <% } %>
+            <div class="news-item">
+                <div class="news_box">
+                    <%if (topHeadlines.articles[i]  !== null && topHeadlines.articles[i] !== "" && topHeadlines.articles[i] !== undefined) { %>
 
-            </tr>
-            <% a++ %>
+                    <div class="newsimg"><img class="img-responsive" src="<%=topHeadlines.articles[i].image_url%>"
+                            alt=""></div>
+                    <div class="news-content">
+                        <div class="news_postdate">
+                            <% let date = new Date(topHeadlines.articles[i].published) %>
+                            <span><%= date.getUTCMonth() + "/" + date.getUTCDate() + "/" + date.getUTCFullYear() %></span>
+                        </div>
+                        <a href="<%=topHeadlines.articles[i].url%>">
+                            <h3><%= topHeadlines.articles[i].title  %></h3>
+                            <%- include('partials/content_score', { contents: topHeadlines.articles[i].content, country: topHeadlines.country}) %>
+                        </a>
+                        <p><%= topHeadlines.articles[i].description %></p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
             <% } %>
-        </tbody>
+        </div>
         <% } %>
-    
+
 
     </div>
 </form>

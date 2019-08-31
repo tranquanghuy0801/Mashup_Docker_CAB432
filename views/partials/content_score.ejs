@@ -1,6 +1,32 @@
 <div class="content-score">
-    <% Object.keys(contents).forEach(name => { %>
-        <h3><%= name %></h3>
-        <h3><%= contents[name] %></h3>
-    <% }) %>
+    <div class="label">
+        <h3 class="active"><%= Object.keys(contents)[0].slice(1) %></h3>
+    </div>
+    <% let content = Object.keys(contents)[0] %>
+    <% let label = content.split("/")[1] %> 
+    <% label = label.split("&")[0].toLowerCase() %>
+    <% label = label.replace(" ","") %>
+    <% let secondLabel = "" %>
+    <% if(label == "news" && content.split("/").length > 2) { %>
+        <% secondLabel = content.split("/")[2] %>
+        <% secondLabel = secondLabel.split("&")[0].toLowerCase() %>
+        <% secondLabel = secondLabel.replace(" ","") %>
+    <% } %>
+    <div class="similar-link">
+    <% if(label=="health" || secondLabel=="health") { %>
+        <a class="active" href="../similar/<%=country%>/health">View Similar News</a>
+    <% } else if(label=="business" || label=="finance" || label=="law" || secondLabel=="politics" || secondLabel=="business" || label=="realestate"){ %>
+        <a class="active" href="../similar/<%=country%>/business">View Similar News</a>
+    <% } else if(label=="computers" || label=="games" || label== "internet" || label=="online" || label=="autos"){ %>
+        <a class="active" href="../similar/<%=country%>/technology">View Similar News</a>
+    <% } else if(label=="arts" || secondLabel=="gossip"){ %>
+        <a class="active" href="../similar/<%=country%>/entertainment">View Similar News</a>
+    <% } else if(label=="science" || secondLabel=="weather"){ %>
+        <a class="active" href="../similar/<%=country%>/science">View Similar News</a>
+    <% } else if(label=="sports" || secondLabel=="sports"){ %>
+        <a class="active" href="../similar/<%=country%>/sports">View Similar News</a>
+    <% } else { %>
+        <a class="active" href="../similar/<%=country%>/general">View Similar News</a>
+    <% } %>
+    </div>
 </div>
