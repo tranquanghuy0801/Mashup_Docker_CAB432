@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV != 'production'){
+    require('dotenv').config();
+}
+
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
@@ -23,7 +28,10 @@ app.use('/similar',similarRouter);
 app.use('/about',aboutRouter);
 
 // Run the server 
-app.listen((process.env.PORT || 8000), function () {
+app.listen((process.env.PORT || 8000), function (e) {
+	if(e){
+		throw new Error('Internal server error');
+	}
 	console.log("Server is up and running...");
 });
 

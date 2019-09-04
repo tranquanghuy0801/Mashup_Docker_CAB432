@@ -3,7 +3,7 @@ const router = express.Router()
 // Import news API 
 const NewsAPI = require('newsapi');
 // Connect new API 
-const newsapi = new NewsAPI('41dcf83144f54d559886b79caff9273e');
+const newsapi = new NewsAPI(process.env.NewsAPIKey);
 
 router.get('/:country/:category',(req,res)=> {
     newsapi.v2.topHeadlines({

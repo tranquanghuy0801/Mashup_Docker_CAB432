@@ -1,4 +1,8 @@
 node_modules
 .DS_Store 
 *.json
+.env 
+.dockerignore
+*.pdf 
+*.docx 
 .bash_profile

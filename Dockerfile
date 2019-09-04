@@ -1,11 +1,19 @@
-FROM node:boron 
+FROM node:10
 
-COPY . /src 
+RUN mkdir -p /usr/src/app
 
-WORKDIR /src 
+WORKDIR /use/src/app 
+
+ENV GOOGLE_APPLICATION_CREDENTIALS  /** Insert Your Google API json file here **/
+
+COPY package*.json ./
 
 RUN npm install 
 
-EXPOSE 3000 
+COPY . .
+
+RUN export GOOGLE_APPLICATION_CREDENTIALS=GOOGLE_APPLICATION_CREDENTIALS
+
+EXPOSE 8000 
 
 CMD ["npm","start"]

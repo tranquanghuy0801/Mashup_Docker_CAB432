@@ -1,15 +1,15 @@
+<%if (topHeadlines.status == 'ok' ) { %>
 <% let name_country %>
 <% if(country=="us") { %>
-	<% name_country = "USA" %>
+<% name_country = "USA" %>
 <% } else if(country=="au") { %>
-	<% name_country = "Australia" %>
+<% name_country = "Australia" %>
 <% } else if(country=="ca") { %>
-	<% name_country = "Canada" %>
+<% name_country = "Canada" %>
 <% } else { %>
-	<% name_country = "UK" %>
+<% name_country = "UK" %>
 <% } %>
 <% let name_category = category.charAt(0).toUpperCase() + category.slice(1) %>
-<%if (topHeadlines.status == 'ok' ) { %>
 <h3>The <%= name_category %> News in <%= name_country %></h3>
 <div class="row">
 	<% for(i=0; i < topHeadlines.articles.length; i++) { %>

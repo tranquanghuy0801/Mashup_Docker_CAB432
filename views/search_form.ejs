@@ -1,4 +1,14 @@
-<h2 class="page-header">News Searched</h2>
+<% let name_country %>
+<% if(country=="us") { %>
+<% name_country = "USA" %>
+<% } else if(country=="au") { %>
+<% name_country = "Australia" %>
+<% } else if(country=="ca") { %>
+<% name_country = "Canada" %>
+<% } else { %>
+<% name_country = "UK" %>
+<% } %>
+<h2 class="page-header">News Searched In <%= name_country %></h2>
 <form action="/search" method="GET">
     <div class="form-item">
         <%if (topHeadlines.status == 'ok' ) { %>

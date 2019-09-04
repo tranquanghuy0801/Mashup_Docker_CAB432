@@ -7,7 +7,7 @@ const language = require('@google-cloud/language');
 // Creates a client
 const client = new language.LanguageServiceClient();
 // Connect new API 
-const newsapi = new NewsAPI('41dcf83144f54d559886b79caff9273e');
+const newsapi = new NewsAPI(process.env.NewsAPIKey);
 
 // To query top headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
@@ -15,7 +15,7 @@ router.get('/:id',(req, res) => {
 	newsapi.v2.topHeadlines({
 		country: req.params.id,
 		language: 'en'
-	}).then(async (response) => {
+	}).then( async function(response){
 		let responseToSend;
 		if (response.status == 'ok' && response.articles.length > 0) {
 			//console.log(response.articles.length)
@@ -28,7 +28,7 @@ router.get('/:id',(req, res) => {
 					"status": "ok"
 			};
 			
-			res.render('search_form',{topHeadlines : topHeadlines});
+			res.render('search_form',{topHeadlines : topHeadlines, country: req.params.id});
 			//return res.json(topHeadlines);
 			
 		}

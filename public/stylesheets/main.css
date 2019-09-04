@@ -156,13 +156,13 @@ img:hover {
     color: white;
 }
 
-.row {
+.row_api {
     display: flex;
     padding: 15px;
 }
   
 .column {
-    flex: 50%;
+    flex: 60%;
 }
 
 .content {
